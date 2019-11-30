@@ -68,12 +68,12 @@ public class JetsApp {
 		Scanner input = new Scanner(System.in);
 		int choice = 0;
 		AirField airfield = new AirField();
-		airfield.setJets(getJetsInput());
+		List <Jet> jetArr = getJetsInput();
+		airfield.setJets(jetArr);
 		while (true) {
 			try {
 				System.out.println("Select an option!");
 				System.out.println("************************");
-
 				System.out.println("1: List fleet");
 				System.out.println("2: Fly all jets");
 				System.out.println("3: View fastest jet");
@@ -94,10 +94,13 @@ public class JetsApp {
 			switch (choice) {
 				case 1:
 					System.out.println(airfield.getJets());
+					prettyMenu();
 					continue;
 				case 2:
 					continue;
 				case 3:
+					fastestJet(jetArr);
+					prettyMenu();
 					continue;
 				case 4:
 					continue;
@@ -106,6 +109,7 @@ public class JetsApp {
 				case 6:
 					continue;
 				case 7:
+					addJet(jetArr);
 					continue;
 				case 8:
 					continue;
@@ -121,5 +125,51 @@ public class JetsApp {
 		}
 
 	}
-
+	
+	public void addJet(List<Jet> jetArr) {
+		Scanner input = new Scanner(System.in);
+		JetImpl gj;
+		while(true) {
+		try{
+			System.out.println("Enter jet model");
+		
+		String param1 = input.nextLine();
+		System.out.println("Enter numeric jet speed");
+		int param2 = input.nextInt();
+		System.out.println("Enter numeric jet range");
+		int param3 = input.nextInt();
+		System.out.println("Enter numeric jet price");
+		long param4 = input.nextLong();
+		gj = new JetImpl(param1,param2,param3,param4);
+		break;
+		}
+		catch(InputMismatchException e) {
+			input.nextLine();
+			System.out.println("Please enter valid information");
+			continue;
+		}
+		}
+		
+		jetArr.add(gj);
+		
+	}
+	public void fastestJet (List<Jet> jetArr) {
+		Jet fjet = jetArr.get(0);
+		for (Jet jet : jetArr) {
+			if(jet.getSpeed() > fjet.getSpeed()) {
+				fjet = jet;
+				
+			}
+			
+		}
+		System.out.println(fjet.toString());
+	}
+	public void prettyMenu() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			System.out.println("General error");;
+		}
+		
+	}
 }

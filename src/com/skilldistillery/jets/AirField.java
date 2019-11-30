@@ -16,6 +16,9 @@ public class AirField {
 	public void setJets(List<Jet> jets) {
 		this.jets = jets;
 	}
+	public void setJet(Jet jet) {
+		jets.add(jet);
+	}
 
 	@Override
 	public String toString() {

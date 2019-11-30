@@ -6,4 +6,10 @@ public class JetImpl extends Jet {
 		super(model, speed, range, price);
 	}
 
+	@Override
+	public String toString() {
+		return "JetImpl [getModel()=" + getModel() + ", getSpeed()=" + getSpeed() + ", getRange()=" + getRange()
+				+ ", getPrice()=" + getPrice() +  "]";
+	}
+
 }
