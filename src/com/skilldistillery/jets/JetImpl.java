@@ -8,8 +8,13 @@ public class JetImpl extends Jet {
 
 	@Override
 	public String toString() {
-		return "JetImpl [getModel()=" + getModel() + ", getSpeed()=" + getSpeed() + ", getRange()=" + getRange()
-				+ ", getPrice()=" + getPrice() +  "]";
+		return "JetImpl [Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange()
+				+ ", Price=" + getPrice() +  "]";
 	}
 
+	@Override
+	public void fly() {
+		System.out.printf(this.getClass().getSimpleName() + "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange()
+				+ ", Price=" + getPrice() +  "]" + " Flight Time %.2f hours]" ,getRange() / getSpeed());
+	}
 }

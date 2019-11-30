@@ -63,5 +63,6 @@ public abstract class Jet {
 	public void setPrice(long price) {
 		this.price = price;
 	}
+	public abstract void fly();
 
 }

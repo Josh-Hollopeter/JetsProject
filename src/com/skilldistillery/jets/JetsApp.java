@@ -12,21 +12,7 @@ public class JetsApp {
 		JetsApp app = new JetsApp();
 		AirField airfield = new AirField();
 		airfield.setJets(app.getJetsInput());
-		System.out.println(airfield.getJets());
 		app.menu();
-
-//		CargoPlane cp = new CargoPlane("Cessna", 50, 300, 1_000);
-//		cp.loadCargo();
-//		System.out.println(cp.toString());
-//		FighterJet fj = new FighterJet("F16",500,1000,20_000);
-//		FighterJet fr = new FighterJet("F16",500,1000,20_001);
-//		ArrayList <Jet> jetArr = new ArrayList<>(); 
-//		jetArr.add(cp);
-//		jetArr.add(fj);
-//		jetArr.add(fr);
-//		airfield.setJets(jetArr);
-//		fr.fight();
-//		System.out.println(field.getJets().toString());
 
 	}
 
@@ -68,7 +54,7 @@ public class JetsApp {
 		Scanner input = new Scanner(System.in);
 		int choice = 0;
 		AirField airfield = new AirField();
-		List <Jet> jetArr = getJetsInput();
+		List<Jet> jetArr = getJetsInput();
 		airfield.setJets(jetArr);
 		while (true) {
 			try {
@@ -89,6 +75,7 @@ public class JetsApp {
 			} catch (InputMismatchException e) {
 				input.nextLine();
 				System.out.println("\nPlease enter a valid number");
+				prettyMenu();
 				continue;
 			}
 			switch (choice) {
@@ -97,26 +84,37 @@ public class JetsApp {
 					prettyMenu();
 					continue;
 				case 2:
+					jetFlight(jetArr);
+					prettyMenu();
 					continue;
 				case 3:
 					fastestJet(jetArr);
 					prettyMenu();
 					continue;
 				case 4:
+					jetRange(jetArr);
+					prettyMenu();
 					continue;
 				case 5:
+					jetCargo(jetArr);
+					prettyMenu();
 					continue;
 				case 6:
+					jetFight(jetArr);
+					prettyMenu();
 					continue;
 				case 7:
-					addJet(jetArr);
+					addJet(jetArr, input);
 					continue;
 				case 8:
+					removeJet(jetArr, input);
 					continue;
 				case 9:
+					System.out.println("Goodbye");
 					break;
 				default:
 					System.out.println("Only numbers 1-9 are available");
+					prettyMenu();
 					continue;
 			}
 			input.close();
@@ -125,51 +123,122 @@ public class JetsApp {
 		}
 
 	}
-	
-	public void addJet(List<Jet> jetArr) {
-		Scanner input = new Scanner(System.in);
+
+	public void addJet(List<Jet> jetArr, Scanner input) {
 		JetImpl gj;
-		while(true) {
-		try{
-			System.out.println("Enter jet model");
-		
-		String param1 = input.nextLine();
-		System.out.println("Enter numeric jet speed");
-		int param2 = input.nextInt();
-		System.out.println("Enter numeric jet range");
-		int param3 = input.nextInt();
-		System.out.println("Enter numeric jet price");
-		long param4 = input.nextLong();
-		gj = new JetImpl(param1,param2,param3,param4);
-		break;
+		input.nextLine();
+		while (true) {
+			try {
+				System.out.println("Enter jet model");
+
+				String param1 = input.nextLine();
+				System.out.println("Enter numeric jet speed");
+				double param2 = input.nextDouble();
+				System.out.println("Enter numeric jet range(Whole number)");
+				int param3 = input.nextInt();
+				System.out.println("Enter numeric jet price");
+				long param4 = input.nextLong();
+				gj = new JetImpl(param1, param2, param3, param4);
+				break;
+			} catch (InputMismatchException e) {
+				input.nextLine();
+				System.out.println("Please enter valid information");
+				continue;
+			}
 		}
-		catch(InputMismatchException e) {
-			input.nextLine();
-			System.out.println("Please enter valid information");
-			continue;
-		}
-		}
-		
+
 		jetArr.add(gj);
-		
+
 	}
-	public void fastestJet (List<Jet> jetArr) {
+
+	public void fastestJet(List<Jet> jetArr) {
 		Jet fjet = jetArr.get(0);
 		for (Jet jet : jetArr) {
-			if(jet.getSpeed() > fjet.getSpeed()) {
+			if (jet.getSpeed() > fjet.getSpeed()) {
 				fjet = jet;
-				
+
 			}
-			
+
 		}
 		System.out.println(fjet.toString());
 	}
+
 	public void prettyMenu() {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			System.out.println("General error");;
+			System.out.println("Thread error");
+			;
 		}
-		
+
+	}
+
+	public void jetRange(List<Jet> jetArr) {
+		Jet fjet = jetArr.get(0);
+		for (Jet jet : jetArr) {
+			if (jet.getRange() > fjet.getRange()) {
+				fjet = jet;
+
+			}
+
+		}
+		System.out.println(fjet.toString());
+	}
+
+	public void jetFlight(List<Jet> jetArr) {
+		for (Jet jet : jetArr) {
+			jet.fly();
+
+		}
+
+	}
+
+	public void jetCargo(List<Jet> jetArr) {
+		int count = 0;
+		for (Jet jet : jetArr) {
+			if (jet instanceof CargoCarrier) {
+				((CargoCarrier) jet).loadCargo();
+				count++;
+			}
+
+		}
+		if (count == 0) {
+			System.out.println("No cargo planes in airfield");
+		}
+
+	}
+
+	public void jetFight(List<Jet> jetArr) {
+		int count = 0;
+		for (Jet jet : jetArr) {
+			if (jet instanceof CombatReady) {
+				((CombatReady) jet).fight();
+				count++;
+			}
+		}
+		if (count == 0) {
+			System.out.println("No fighter jets in airfield");
+		}
+	}
+
+	public void removeJet(List<Jet> jetArr, Scanner input) {
+		while (true) {
+			try {
+				System.out.println("Select a jet number to delete starting at 1. Array size is " + jetArr.size());
+				int jetDelete = input.nextInt()-1;
+				if(jetDelete > jetArr.size()-1 || jetDelete < 0) {
+					System.out.println("Number not in range");
+					input.nextLine();
+					continue;
+				}
+				jetArr.remove(jetDelete);
+			} catch (InputMismatchException e) {
+				input.nextLine();
+				System.out.println("Please enter a whole number");
+				continue;
+			}
+			break;
+		}
+
 	}
 }
