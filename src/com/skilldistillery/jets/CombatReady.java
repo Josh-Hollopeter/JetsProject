@@ -4,5 +4,4 @@ public interface CombatReady {
 	
 	 void fight();
 	 
-
 }

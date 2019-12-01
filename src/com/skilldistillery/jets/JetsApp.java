@@ -134,7 +134,7 @@ public class JetsApp {
 				double param2 = input.nextDouble();
 				System.out.println("Enter numeric jet range(Whole number)");
 				int param3 = input.nextInt();
-				System.out.println("Enter numeric jet price");
+				System.out.println("Enter numeric jet price(Whole number");
 				long param4 = input.nextLong();
 				gj = new JetImpl(param1, param2, param3, param4);
 				break;
@@ -224,6 +224,7 @@ public class JetsApp {
 			try {
 				if (jetArr.size() <= 0) {
 					System.out.println("All jets are removed");
+					prettyMenu();
 					break;
 				}
 				System.out.println(
