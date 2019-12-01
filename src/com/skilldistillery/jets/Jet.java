@@ -47,9 +47,16 @@ public abstract class Jet {
 		this.price = price;
 	}
 
-	public abstract double machSpeed();
+	public double flightTime() {
+		return this.getRange() / this.getSpeed();
 
-	public abstract double flightTime();
+	}
+
+	public double machSpeed() {
+		return this.getSpeed() / getMachMod();
+
+	}
+
 
 	public abstract void fly();
 

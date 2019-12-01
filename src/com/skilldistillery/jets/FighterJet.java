@@ -25,16 +25,5 @@ public class FighterJet extends Jet implements CombatReady {
 				flightTime(), machSpeed());
 	}
 
-	@Override
-	public double flightTime() {
-		return this.getRange() / this.getSpeed();
-
-	}
-
-	@Override
-	public double machSpeed() {
-		return this.getSpeed() / super.getMachMod();
-
-	}
 
 }
