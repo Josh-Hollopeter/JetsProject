@@ -5,6 +5,7 @@ public abstract class Jet {
 	private double speed;
 	private int range;
 	private long price;
+	private static double machMod = 767.269;
 
 	public Jet(String model, double speed, int range, long price) {
 		super();
@@ -46,6 +47,13 @@ public abstract class Jet {
 		this.price = price;
 	}
 
+	public abstract double machSpeed();
+
+	public abstract double flightTime();
+
 	public abstract void fly();
 
+	public static double getMachMod() {
+		return machMod;
+	}
 }
