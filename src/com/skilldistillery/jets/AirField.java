@@ -4,7 +4,7 @@ import java.util.*;
 
 public class AirField {
 	private List<Jet> jets;
-	
+
 	public AirField() {
 		jets = new ArrayList<>();
 	}
@@ -16,6 +16,7 @@ public class AirField {
 	public void setJets(List<Jet> jets) {
 		this.jets = jets;
 	}
+
 	public void setJet(Jet jet) {
 		jets.add(jet);
 	}

@@ -8,8 +8,8 @@ public class JetImpl extends Jet {
 
 	@Override
 	public String toString() {
-		return "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange() + ", Price="
-				+ getPrice() + ", Class=" + this.getClass().getSimpleName() + "]\n";
+		return "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange() + ", Price=" + getPrice()
+				+ ", Class=" + this.getClass().getSimpleName() + "]\n";
 	}
 
 	@Override

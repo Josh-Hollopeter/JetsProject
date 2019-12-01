@@ -22,7 +22,7 @@ public class FighterJet extends Jet implements CombatReady {
 	public void fly() {
 		System.out.printf(
 				this.getClass().getSimpleName() + "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range="
-						+ getRange() + ", Price=" + getPrice() +  " Flight Time %.2f hours Mach= %.2f ]\n",
+						+ getRange() + ", Price=" + getPrice() + " Flight Time %.2f hours Mach= %.2f ]\n",
 				getRange() / getSpeed(), getSpeed() / 767.269);
 	}
 
