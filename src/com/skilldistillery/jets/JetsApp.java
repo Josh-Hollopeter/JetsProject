@@ -222,12 +222,21 @@ public class JetsApp {
 	public void removeJet(List<Jet> jetArr, Scanner input) {
 		while (true) {
 			try {
-				System.out.println("Select a jet number to remove starting at 1. Array size is " + jetArr.size());
-				int jetDelete = input.nextInt()-1;
-				if(jetDelete > jetArr.size()-1 || jetDelete < 0) {
+				if (jetArr.size() <= 0) {
+					System.out.println("All jets are removed");
+					break;
+				}
+				System.out.println(
+						"Select a jet number to remove starting at 1, enter 0 to quit. Array size is " + jetArr.size());
+				int jetDelete = input.nextInt() - 1;
+				if (jetDelete > jetArr.size() - 1 || jetDelete < -1) {
 					System.out.println("Number not in range");
 					input.nextLine();
 					continue;
+				} else if (jetDelete == -1) {
+					System.out.println("Returning to menu");
+					prettyMenu();
+					break;
 				}
 				jetArr.remove(jetDelete);
 			} catch (InputMismatchException e) {
