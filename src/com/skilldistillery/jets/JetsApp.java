@@ -10,21 +10,19 @@ public class JetsApp {
 
 	public static void main(String[] args) {
 		JetsApp app = new JetsApp();
-		AirField airfield = new AirField();
-		airfield.setJets(app.getJetsInput());
 		app.menu();
 
 	}
 
-	public List<Jet> getJetsInput() {
-		String fileName = "Jets.txt";
+	public List<Jet> getJetsInput(String file) {
+		String fileName = file;
 		List<Jet> jetArr = new ArrayList<>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				String[] jetParams = line.split(",");
-				int param2 = Integer.parseInt(jetParams[2]);
+				Double param2 = Double.valueOf(jetParams[2]);
 				int param3 = Integer.parseInt(jetParams[3]);
 				int param4 = Integer.parseInt(jetParams[4]);
 				if (jetParams[0].equalsIgnoreCase("Cargo")) {
@@ -54,7 +52,7 @@ public class JetsApp {
 		Scanner input = new Scanner(System.in);
 		int choice = 0;
 		AirField airfield = new AirField();
-		List<Jet> jetArr = getJetsInput();
+		List<Jet> jetArr = getJetsInput("Jets.txt");
 		airfield.setJets(jetArr);
 		while (true) {
 			try {
@@ -167,7 +165,7 @@ public class JetsApp {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			System.out.println("Thread error");
+			System.out.println("Thread interruption error");
 			;
 		}
 
@@ -224,7 +222,7 @@ public class JetsApp {
 	public void removeJet(List<Jet> jetArr, Scanner input) {
 		while (true) {
 			try {
-				System.out.println("Select a jet number to delete starting at 1. Array size is " + jetArr.size());
+				System.out.println("Select a jet number to remove starting at 1. Array size is " + jetArr.size());
 				int jetDelete = input.nextInt()-1;
 				if(jetDelete > jetArr.size()-1 || jetDelete < 0) {
 					System.out.println("Number not in range");

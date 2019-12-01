@@ -1,4 +1,5 @@
 package com.skilldistillery.jets;
+
 public class FighterJet extends Jet implements CombatReady {
 
 	public FighterJet(String model, double speed, int range, long price) {
@@ -7,21 +8,22 @@ public class FighterJet extends Jet implements CombatReady {
 
 	@Override
 	public void fight() {
-		System.out.println(this.toString() +" Pew pew pew, bogies on my 6");
+		System.out.println(this.toString() + " Pew pew pew, bogies on my 6");
 
 	}
 
 	@Override
 	public String toString() {
-		return "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange()
-				+ ", Price=" + getPrice()+ ", Class=" + getClass().getSimpleName() +  "]\n";
+		return "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange() + ", Price=" + getPrice()
+				+ ", Class=" + getClass().getSimpleName() + "]\n";
 	}
 
 	@Override
 	public void fly() {
-		System.out.printf(this.getClass().getSimpleName() + "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range=" + getRange()
-				+ ", Price=" + getPrice() +  "]" + " Flight Time %.2f hours]\n" ,getRange() / getSpeed());
+		System.out.printf(
+				this.getClass().getSimpleName() + "[Model=" + getModel() + ", Speed=" + getSpeed() + ", Range="
+						+ getRange() + ", Price=" + getPrice() +  " Flight Time %.2f hours Mach= %.2f ]\n",
+				getRange() / getSpeed(), getSpeed() / 767.269);
 	}
-	
 
 }
