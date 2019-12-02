@@ -24,7 +24,7 @@ public class JetsApp {
 				String[] jetParams = line.split(",");
 				Double param2 = Double.valueOf(jetParams[2]);
 				int param3 = Integer.parseInt(jetParams[3]);
-				int param4 = Integer.parseInt(jetParams[4]);
+				long param4 = Integer.parseInt(jetParams[4]);
 				if (jetParams[0].equalsIgnoreCase("Cargo")) {
 					CargoPlane cp = new CargoPlane(jetParams[1], param2, param3, param4);
 					jetArr.add(cp);
