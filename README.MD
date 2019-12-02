@@ -12,7 +12,7 @@
 ### Topics/Technologies used
 * Java
 * Object Oriented programming
-* Polymorphism (Override)(Overload)
+* Polymorphism (Override)
 * Abstraction
 * Encapsulation
 * Inheritance
